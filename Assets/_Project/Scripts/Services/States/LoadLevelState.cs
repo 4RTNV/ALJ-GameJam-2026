@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _Project.Services.States
 {
-    public class LoadLevelState : IPayloadedState<string>
+    public class LoadLevelState : IState
     {
         private readonly IPersistentProgress _progress;
         private readonly IUIFactory _uiFactory;
@@ -32,7 +32,7 @@ namespace _Project.Services.States
             _levelProgress = levelProgress;
         }
 
-        public void Enter(string sceneName)
+        public void Enter()
         {
             _gameFactory.CleanUp();
             _loadingCurtain.gameObject.SetActive(true);
@@ -40,25 +40,5 @@ namespace _Project.Services.States
 
         public void Exit() 
             => _loadingCurtain.gameObject.SetActive(false);
-
-        private void OnLoaded()
-        {
-            LevelConfig config = _staticData.ForLevel(_progress.Progress.CurrentLevel);
-            _levelProgress.LoadLevelConfig(config);
-            InitializeInGameHUD();
-            InitializeCamera();
-            _gameStateMachine.Enter<LoopLevelState>();
-        }
-
-        private void InitializeCamera()
-        {
-            GameObject cameraSpawnPoint = GameObject.FindGameObjectWithTag(Constants.CameraSpawnPoint);
-        }
-
-        private void InitializeInGameHUD()
-        {
-            _uiFactory.CreateUIRoot();
-
-        }
     }
 }
