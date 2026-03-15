@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/Resources/UI/USS%20Styles/PlayerHUD.uss?fileID=7433441132597879392&amp;guid=c90c35dcdcc37a54eb686e77925c21c1&amp;type=3#PlayerHUD"/>
+    <ui:VisualElement style="flex-grow: 1; align-items: auto; justify-content: flex-start; align-self: auto; align-content: center;">
+        <ui:Label text="$30000" name="TotalMoney" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; justify-content: flex-start; align-items: flex-end; align-self: flex-end; align-content: auto; right: 0; top: 0; position: absolute;"/>
+        <ui:Label text="4000 $" name="MoneyOnHands" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: flex-start; align-items: auto; position: relative;"/>
+        <ui:Label text="20 kg" name="Mass" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: flex-start; align-items: auto; position: relative; top: 0%; left: 0%;"/>
+        <ui:Label text="3:00" name="Time" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: center; justify-content: flex-start; position: absolute;"/>
+    </ui:VisualElement>
+</ui:UXML>
