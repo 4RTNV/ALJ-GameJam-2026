@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         var movementDirection = _playerInputActions.Move.ReadValue<Vector2>();
-        _rigidBody.linearVelocity = PlayerMoveMaxSpeed * Time.deltaTime * movementDirection;
+        _rigidBody.linearVelocity = new Vector3(movementDirection.x * PlayerMoveMaxSpeed,
+                                                _rigidBody.linearVelocity.y,
+                                                movementDirection.y * PlayerMoveMaxSpeed);
     }
 }
