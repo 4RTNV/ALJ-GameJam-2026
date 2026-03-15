@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/_Project/Resources/UI/USS%20Styles/PlayerHUD.uss?fileID=7433441132597879392&amp;guid=c90c35dcdcc37a54eb686e77925c21c1&amp;type=3#PlayerHUD"/>
     <ui:VisualElement name="GameStatus" enabled="true" style="align-items: flex-end; justify-content: space-between; align-self: stretch;">
         <ui:Label text="$30000" name="TotalMoney" enabled="true" style="-unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); font-size: 26px; color: rgb(255, 255, 255);"/>
-        <ui:Label text="3:00" name="Time" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: center; justify-content: flex-start; position: absolute; top: 0;"/>
+        <ui:Label text="3:00" name="Time" enabled="true" data-source-type="_Project.MVVM.GameStateViewModel, Assembly-CSharp" data-source-path="TimeRemaining" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: center; justify-content: flex-start; position: absolute; top: 0;"/>
     </ui:VisualElement>
     <ui:VisualElement name="PlayerStatus" style="flex-grow: 1; align-items: flex-start; align-content: flex-end; align-self: flex-start; justify-content: flex-end;">
         <ui:Instance template="PlayerInventoryView"/>

@@ -3,6 +3,8 @@ using _Project.Services.CurrentLevelProgress;
 using _Project.Services.PlayerProgress;
 using _Project.StaticData;
 using _Project.UI.Services.Factory;
+using _Project.Infrastructure.GameTime;
+using _Project.MVVM;
 
 namespace _Project.Services.States
 {
@@ -15,10 +17,12 @@ namespace _Project.Services.States
         private readonly IGameFactory _gameFactory;
         private readonly ILevelProgress _levelProgress;
 
+        private readonly GameStateViewModel _gameVM; //i'm not sure if it should be stored here
+
         public LoadLevelState(GameStateMachine gameStateMachine,
             IGameFactory gameFactory, IPersistentProgress progress,
             IStaticData staticData, IUIFactory uiFactory,
-            ILevelProgress levelProgress)
+            ILevelProgress levelProgress, GameStateViewModel gameVM)
         {
             _gameStateMachine = gameStateMachine;
             _gameFactory = gameFactory;
@@ -26,10 +30,12 @@ namespace _Project.Services.States
             _staticData = staticData;
             _uiFactory = uiFactory;
             _levelProgress = levelProgress;
+            _gameVM = gameVM;
         }
 
         public void Enter()
         {
+            _gameFactory.CreatePlayerUI(_gameVM);
         }
 
         public void Exit()
