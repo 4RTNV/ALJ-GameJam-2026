@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Infrastructure.InGameTime;
 using _Project.Infrastructure.SaveLoad;
+using _Project.Services.AssetManagement;
 using _Project.Services.CurrentLevelProgress;
 using _Project.Services.Factory;
 using _Project.Services.PlayerProgress;
@@ -19,7 +20,7 @@ namespace _Project.Services.States
         private IExitableState _currentState;
 
         public GameStateMachine(IPersistentProgress persistentProgress, ISaveLoad saveLoad, IGameFactory gameFactory,
-            IUIFactory uiFactory, IWindowContainer windowContainer,
+            IUIFactory uiFactory, IWindowContainer windowContainer, IAssetProvider assetProvider,
             IStaticData staticData, ILevelProgress levelProgress, IInGameTimeService timeService,
             IEnumerable<ISavedProgressReader> saveReaderServices, ISceneLoader sceneLoader)
         {

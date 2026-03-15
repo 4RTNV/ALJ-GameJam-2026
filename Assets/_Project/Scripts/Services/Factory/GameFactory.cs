@@ -22,12 +22,6 @@ namespace _Project.Services.Factory
             _assets = assets;
             _progress = progress;
         }
-        
-        public void CleanUp()
-        {
-            ProgressReaders.Clear();
-            ProgressWriters.Clear();
-        }
 
         public void LoadProgress(CurrentPlayerProgress progress)
         {

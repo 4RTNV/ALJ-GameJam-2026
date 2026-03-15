@@ -7,6 +7,5 @@ namespace _Project.Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; } 
         List<IProgressUpdater> ProgressWriters { get; }
-        void CleanUp();
     }
 }

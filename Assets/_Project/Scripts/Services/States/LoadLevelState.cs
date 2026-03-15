@@ -1,11 +1,8 @@
 ﻿using _Project.Services.Factory;
 using _Project.Services.CurrentLevelProgress;
-using _Project.Services;
 using _Project.Services.PlayerProgress;
 using _Project.StaticData;
-using _Project.UI.Services;
 using _Project.UI.Services.Factory;
-using UnityEngine;
 
 namespace _Project.Services.States
 {
@@ -16,7 +13,6 @@ namespace _Project.Services.States
         private readonly GameStateMachine _gameStateMachine;
         private readonly IStaticData _staticData;
         private readonly IGameFactory _gameFactory;
-        private readonly Canvas _loadingCurtain;
         private readonly ILevelProgress _levelProgress;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
@@ -34,11 +30,10 @@ namespace _Project.Services.States
 
         public void Enter()
         {
-            _gameFactory.CleanUp();
-            _loadingCurtain.gameObject.SetActive(true);
         }
 
-        public void Exit() 
-            => _loadingCurtain.gameObject.SetActive(false);
+        public void Exit()
+        {
+        }
     }
 }
