@@ -42,8 +42,6 @@ namespace _Project.Infrastructure
             builder.AddScoped(typeof(WindowContainer), typeof(IWindowContainer));
             builder.AddScoped(typeof(GameTimer), typeof(IGameTimer));
 
-            builder.AddTransient(typeof(GameStateViewModel));
-
             builder.AddSingleton(typeof(UserModel)); // one shared instance
             builder.AddSingleton(typeof(UserMoneyViewModel)); // one shared VM
 

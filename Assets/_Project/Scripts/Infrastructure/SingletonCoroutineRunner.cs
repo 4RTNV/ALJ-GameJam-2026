@@ -32,7 +32,7 @@ namespace _Project.Infrastructure
 
         private void Update()
         {
-            OnGameLoopUpdate.Invoke(this, null);
+            OnGameLoopUpdate?.Invoke(this, null);
         }
         public static event EventHandler OnGameLoopUpdate;
     }

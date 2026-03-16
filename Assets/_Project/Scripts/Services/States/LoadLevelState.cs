@@ -17,12 +17,10 @@ namespace _Project.Services.States
         private readonly IGameFactory _gameFactory;
         private readonly ILevelProgress _levelProgress;
 
-        private readonly GameStateViewModel _gameVM; //i'm not sure if it should be stored here
-
         public LoadLevelState(GameStateMachine gameStateMachine,
             IGameFactory gameFactory, IPersistentProgress progress,
             IStaticData staticData, IUIFactory uiFactory,
-            ILevelProgress levelProgress, GameStateViewModel gameVM)
+            ILevelProgress levelProgress)
         {
             _gameStateMachine = gameStateMachine;
             _gameFactory = gameFactory;
@@ -30,12 +28,10 @@ namespace _Project.Services.States
             _staticData = staticData;
             _uiFactory = uiFactory;
             _levelProgress = levelProgress;
-            _gameVM = gameVM;
         }
 
         public void Enter()
         {
-            _gameFactory.CreatePlayerUI(_gameVM);
         }
 
         public void Exit()

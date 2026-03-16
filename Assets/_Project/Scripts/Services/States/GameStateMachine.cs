@@ -23,7 +23,7 @@ namespace _Project.Services.States
         public GameStateMachine(IPersistentProgress persistentProgress, ISaveLoad saveLoad, IGameFactory gameFactory,
             IUIFactory uiFactory, IWindowContainer windowContainer, IAssetProvider assetProvider,
             IStaticData staticData, ILevelProgress levelProgress, IInGameTimeService timeService,
-            IEnumerable<ISavedProgressReader> saveReaderServices, ISceneLoader sceneLoader, GameStateViewModel gameStateVM)
+            IEnumerable<ISavedProgressReader> saveReaderServices, ISceneLoader sceneLoader)
         {
             _states = new Dictionary<Type, IExitableState>
             {
@@ -31,7 +31,7 @@ namespace _Project.Services.States
                 [typeof(LoadProgressState)] = new LoadProgressState(this, persistentProgress, saveLoad),
                 [typeof(LoadHubState)] = new LoadHubState(this, windowContainer, sceneLoader),
                 [typeof(HubState)] = new HubState(this, saveReaderServices, windowContainer),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, gameFactory, persistentProgress, staticData, uiFactory, levelProgress, gameStateVM),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, gameFactory, persistentProgress, staticData, uiFactory, levelProgress),
                 [typeof(LoopLevelState)] = new LoopLevelState(this, saveLoad, levelProgress),
                 [typeof(FinishedLevelState)] = new FinishedLevelState(this, persistentProgress, persistentProgress, timeService)
             };

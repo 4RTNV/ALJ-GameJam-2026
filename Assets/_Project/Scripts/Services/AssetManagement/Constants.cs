@@ -12,5 +12,8 @@ namespace _Project.Services
         public const float TimeLeftAfterPreparationTimeSkip = 3f;
         public const int TutorialLevelIndex = 0;
         public const string TutorialSceneName = "Tutorial";
+
+
+        public const string PlayerUIPrefabPath = "Prefabs/UI/PlayerUI";
     }
 }
