@@ -1,14 +1,17 @@
-﻿using _Project.Infrastructure.GameTime;
+﻿using _Project.Infrastructure;
+using _Project.Infrastructure.GameTime;
+using System;
+using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine.UIElements;
 
 namespace _Project.MVVM
 {
-    public class GameStateViewModel
+    public class GameStateViewModel : INotifyBindablePropertyChanged
     {
         private readonly IGameTimer timer;
 
-        [UxmlAttribute, CreateProperty]
+        [CreateProperty]
         public string TimeRemaining
         {
             get
@@ -20,8 +23,21 @@ namespace _Project.MVVM
         public GameStateViewModel(IGameTimer _timer)
         {
             timer = _timer;
+            SingletonCoroutineRunner.OnGameLoopUpdate += Update;
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            OnPropertyChanged(nameof(TimeRemaining));
         }
 
         public void Start() => timer.IsActive = true;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            propertyChanged?.Invoke(this, new(propertyName));
+        }
+
+        public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
     }
 }

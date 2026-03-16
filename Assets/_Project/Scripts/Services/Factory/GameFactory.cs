@@ -24,8 +24,8 @@ namespace _Project.Services.Factory
         public void CreatePlayerUI(GameStateViewModel gameVM)
         {
             
-            var ui = _assets.Instantiate<UIDocument>("Prefabs/UI/PlayerUI");
-            ui.rootVisualElement.dataSource = gameVM;
+            var ui = _assets.Instantiate<UIDocument>("Prefabs/UI/PlayerUI").rootVisualElement;
+            ui.dataSource = gameVM;
             gameVM.Start();
         }
 
