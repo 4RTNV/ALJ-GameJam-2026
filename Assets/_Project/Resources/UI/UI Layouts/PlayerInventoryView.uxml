@@ -1,6 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Image name="MainBody"/>
-    <ui:Image name="LeftArm"/>
-    <ui:Image name="RightArm"/>
-    <ui:Image name="Back"/>
+    <ui:VisualElement style="flex-grow: 1; justify-content: space-around; position: relative; align-self: stretch; align-content: stretch; align-items: stretch; overflow: visible;">
+        <ui:Image name="Head" source="project://database/Assets/_Project/Resources/Images/humanhud/head.png?fileID=2800000&amp;guid=f72b4a6f414e78a4ca196bf329a58c2f&amp;type=3#head" style="top: 0; position: absolute; left: 0; right: 0; bottom: 0;"/>
+        <ui:Image name="LeftArm" source="project://database/Assets/_Project/Resources/Images/humanhud/hand_left.png?fileID=2800000&amp;guid=6d34d0248bca9d04f9a6fe7fe722bcc0&amp;type=3#hand_left" style="position: absolute; left: 0; right: 0; bottom: 0; top: 0;"/>
+        <ui:Image name="RightArm" source="project://database/Assets/_Project/Resources/Images/humanhud/hand_right.png?fileID=2800000&amp;guid=e3be02b46fd4ae94ca23a83e3dfc236b&amp;type=3#hand_right" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"/>
+        <ui:Image name="Legs" source="project://database/Assets/_Project/Resources/Images/humanhud/legs.png?fileID=2800000&amp;guid=061cf215299ae424c9256a04ba977152&amp;type=3#legs" tint-color="rgb(255, 255, 255)" style="position: absolute; right: 0; bottom: 0; left: 0; top: 0; width: initial;"/>
+        <ui:Image name="Torso" source="project://database/Assets/_Project/Resources/Images/humanhud/torso.png?fileID=2800000&amp;guid=b15c5dd09ccd4d34cb1cda07e332ded0&amp;type=3#torso" picking-mode="Position" scale-mode="ScaleToFit" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;"/>
+    </ui:VisualElement>
 </ui:UXML>
