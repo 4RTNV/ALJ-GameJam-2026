@@ -26,7 +26,6 @@ namespace _Project.Services.Factory
             
             var ui = _assets.Instantiate<UIDocument>("Prefabs/UI/PlayerUI").rootVisualElement;
             ui.dataSource = gameVM;
-            gameVM.Start();
         }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress)

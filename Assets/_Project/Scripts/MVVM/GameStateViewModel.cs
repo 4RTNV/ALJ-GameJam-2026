@@ -31,8 +31,6 @@ namespace _Project.MVVM
             OnPropertyChanged(nameof(TimeRemaining));
         }
 
-        public void Start() => timer.IsActive = true;
-
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             propertyChanged?.Invoke(this, new(propertyName));
