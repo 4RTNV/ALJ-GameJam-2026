@@ -5,7 +5,6 @@ using System.Linq;
 public class PlayerInventory : IPlayerInventory
 {
     private readonly ObservableCollection<IWeightedItem> _inventoryItems;
-    private int _inventoryMass;
 
     public PlayerInventory()
     {
@@ -16,10 +15,10 @@ public class PlayerInventory : IPlayerInventory
     public void AcceptNewTreasure(IWeightedItem weightedItem) 
         => _inventoryItems.Add(weightedItem);
 
-    public int InventoryMass => _inventoryMass;
-    
+    public int InventoryMass { get; private set; }
+
     private void OnInventoryUpdated(object sender, NotifyCollectionChangedEventArgs e) 
-        => _inventoryMass = ComputeInventoryMass();
+        => InventoryMass = ComputeInventoryMass();
 
     private int ComputeInventoryMass() 
         => _inventoryItems.Sum(x => x.Mass);
