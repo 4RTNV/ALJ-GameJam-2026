@@ -1,5 +1,5 @@
-﻿using _Project.MVVM;
-using _Project.Services.Factory;
+﻿using _Project.Services.Factory;
+using _Project.UI.ViewModels;
 using Reflex.Core;
 using UnityEngine;
 

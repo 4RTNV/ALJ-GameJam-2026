@@ -3,8 +3,6 @@ using _Project.Services.CurrentLevelProgress;
 using _Project.Services.PlayerProgress;
 using _Project.StaticData;
 using _Project.UI.Services.Factory;
-using _Project.Infrastructure.GameTime;
-using _Project.MVVM;
 
 namespace _Project.Services.States
 {

@@ -3,7 +3,7 @@ using _Project.Data;
 using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
 using UnityEngine.UIElements;
-using _Project.MVVM;
+using _Project.UI.ViewModels;
 
 namespace _Project.Services.Factory
 {

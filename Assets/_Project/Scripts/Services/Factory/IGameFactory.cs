@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using _Project.MVVM;
 using _Project.Services.PlayerProgress;
+using _Project.UI.ViewModels;
 
 namespace _Project.Services.Factory
 {

@@ -5,24 +5,28 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine.UIElements;
 
-namespace _Project.MVVM
+namespace _Project.UI.ViewModels
 {
     public class GameStateViewModel : INotifyBindablePropertyChanged
     {
-        private readonly IGameTimer timer;
+        private readonly IGameTimer _timer;
+
+
+        public PlayerInventoryViewModel InventoryVM { get; }
 
         [CreateProperty]
         public string TimeRemaining
         {
             get
             {
-                return $"{timer.TimeLeft.Minutes}:{timer.TimeLeft.Seconds}";
+                return $"{_timer.TimeLeft.Minutes:D2}:{_timer.TimeLeft.Seconds:D2}";
             }
         }
 
-        public GameStateViewModel(IGameTimer _timer)
+        public GameStateViewModel(IGameTimer timer, PlayerInventoryViewModel inventoryVM)
         {
-            timer = _timer;
+            _timer = timer;
+            InventoryVM = inventoryVM;
             SingletonCoroutineRunner.OnGameLoopUpdate += Update;
         }
 
