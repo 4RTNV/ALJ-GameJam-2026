@@ -9,21 +9,22 @@ namespace _Project.Obstacles
 
         void Start()
         {
+
             _trigger = GetComponent<BoxCollider>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!CheckIfWeightCanPass(other.GetComponent<IWeightedObject>()))
+            if (!CheckIfWeightCanPass(other.GetComponentInParent<IWeightedItem>()))
             {
                 _collider.enabled = false;
                 _trigger.enabled = false;
             }
         }
 
-        protected override bool CheckIfWeightCanPass(IWeightedObject weightedObject)
+        protected override bool CheckIfWeightCanPass(IWeightedItem weightedObject)
         {
-            throw new NotImplementedException();
+            return weightedObject.Mass <= _weightThreshold;
         }
 
         public event EventHandler OnWeightThresholdReached;
