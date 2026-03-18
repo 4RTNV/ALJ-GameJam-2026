@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Project.MVVM;
 using _Project.Services.PlayerProgress;
 
 namespace _Project.Services.Factory
@@ -7,5 +8,6 @@ namespace _Project.Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; } 
         List<IProgressUpdater> ProgressWriters { get; }
+        void CreatePlayerUI(GameStateViewModel gameVM);
     }
 }

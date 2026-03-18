@@ -1,4 +1,5 @@
 using _Project.Services.CurrentLevelProgress;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,5 +20,7 @@ namespace _Project.StaticData
         
         public LevelConfig ForLevel(int levelID)
             => _levels.GetValueOrDefault(levelID);
+
+        public TimeSpan GetTotalTime() => TimeSpan.FromMinutes(10);
     }
 }

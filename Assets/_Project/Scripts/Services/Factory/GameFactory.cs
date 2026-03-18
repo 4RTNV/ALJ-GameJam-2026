@@ -1,8 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
 using _Project.Data;
 using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
+using UnityEngine.UIElements;
+using _Project.MVVM;
 
 namespace _Project.Services.Factory
 {
@@ -16,6 +17,14 @@ namespace _Project.Services.Factory
         {
             Capacity = 0
         };
+
+
+        public void CreatePlayerUI(GameStateViewModel gameVM)
+        {
+            
+            var ui = _assets.Instantiate<UIDocument>(Constants.PlayerUIPrefabPath).rootVisualElement;
+            ui.dataSource = gameVM;
+        }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress)
         {
