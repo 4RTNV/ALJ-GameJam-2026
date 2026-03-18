@@ -32,6 +32,7 @@ namespace _Project.Services.States
 
         public void Enter()
         {
+            _gameStateMachine.Enter<LoopLevelState>();
         }
 
         public void Exit()
