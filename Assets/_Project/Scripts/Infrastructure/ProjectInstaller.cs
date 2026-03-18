@@ -13,6 +13,8 @@ using _Project.UI.Services.Windows;
 using _Project.UI.ViewModels;
 using Reflex.Core;
 using UnityEngine;
+using _Project.Infrastructure.GameTime;
+using _Project.MVVM;
 
 namespace _Project.Infrastructure
 {
@@ -26,6 +28,7 @@ namespace _Project.Infrastructure
         /// </summary>
         public void InstallBindings(ContainerBuilder builder)
         {
+            builder.AddSingleton(Debug.unityLogger, typeof(ILogger));
             builder.AddSingleton(typeof(AssetProvider), typeof(IAssetProvider));
             builder.AddSingleton(typeof(PersistentProgress), typeof(IPersistentProgress));
             builder.AddSingleton(typeof(PlayerPrefsSaveLoad), typeof(ISaveLoad));
@@ -38,7 +41,8 @@ namespace _Project.Infrastructure
             builder.AddScoped(typeof(LevelProgress), typeof(ILevelProgress));
             builder.AddScoped(typeof(InGameTimeService), typeof(IInGameTimeService));
             builder.AddScoped(typeof(WindowContainer), typeof(IWindowContainer));
-            
+            builder.AddScoped(typeof(GameTimer), typeof(IGameTimer));
+
             builder.AddSingleton(typeof(UserModel)); // one shared instance
             builder.AddSingleton(typeof(UserMoneyViewModel)); // one shared VM
 

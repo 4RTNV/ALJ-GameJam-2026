@@ -3,6 +3,8 @@ using _Project.Services.CurrentLevelProgress;
 using _Project.Services.PlayerProgress;
 using _Project.StaticData;
 using _Project.UI.Services.Factory;
+using _Project.Infrastructure.GameTime;
+using _Project.MVVM;
 
 namespace _Project.Services.States
 {
@@ -30,6 +32,7 @@ namespace _Project.Services.States
 
         public void Enter()
         {
+            _gameStateMachine.Enter<LoopLevelState>();
         }
 
         public void Exit()

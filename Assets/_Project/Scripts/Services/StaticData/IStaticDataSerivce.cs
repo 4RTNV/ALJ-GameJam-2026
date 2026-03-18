@@ -1,5 +1,6 @@
 using _Project.MVVM;
 using _Project.Services.CurrentLevelProgress;
+using System;
 
 namespace _Project.StaticData
 {
@@ -7,5 +8,6 @@ namespace _Project.StaticData
     {
         void LoadStaticData();
         LevelConfig ForLevel(int levelID);
+        TimeSpan GetTotalTime();
     }
 }

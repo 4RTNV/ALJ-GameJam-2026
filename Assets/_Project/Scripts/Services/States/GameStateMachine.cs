@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Infrastructure.InGameTime;
 using _Project.Infrastructure.SaveLoad;
+using _Project.MVVM;
 using _Project.Services.AssetManagement;
 using _Project.Services.CurrentLevelProgress;
 using _Project.Services.Factory;
