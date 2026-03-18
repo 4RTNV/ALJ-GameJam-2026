@@ -1,7 +1,9 @@
-﻿namespace _Project.Services.ItemPickup
+﻿using UnityEngine;
+
+namespace _Project.Services.ItemPickup
 {
     public interface IItemPickup
     {
-        void PickUpItem(Treasure treasure);
+        void TryPickUpItem(Vector3 playerPosition);
     }
 }

@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 401262358}
   - component: {fileID: 401262357}
   - component: {fileID: 401262361}
+  - component: {fileID: 401262362}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -367,6 +368,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3, z: 2}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &401262362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401262356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21cc5dcb0c94a5aa82db02dfcb616c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Services.ItemPickup.Treasure
+  _mass: 1
+  _slot: 0
 --- !u!1 &725564743
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +427,7 @@ GameObject:
   - component: {fileID: 788788025}
   - component: {fileID: 788788024}
   - component: {fileID: 788788023}
+  - component: {fileID: 788788026}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -475,6 +491,18 @@ Transform:
   - {fileID: 1206100315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788788026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788788022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ecfed19636143b088c235f4110cbf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
 --- !u!1 &1206100314
 GameObject:
   m_ObjectHideFlags: 0

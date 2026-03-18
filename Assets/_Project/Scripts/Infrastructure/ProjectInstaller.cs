@@ -26,6 +26,7 @@ namespace _Project.Infrastructure
         /// </summary>
         public void InstallBindings(ContainerBuilder builder)
         {
+            builder.AddSingleton(Debug.unityLogger, typeof(ILogger));
             builder.AddSingleton(typeof(AssetProvider), typeof(IAssetProvider));
             builder.AddSingleton(typeof(PersistentProgress), typeof(IPersistentProgress));
             builder.AddSingleton(typeof(PlayerPrefsSaveLoad), typeof(ISaveLoad));
