@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Properties;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -72,14 +73,14 @@ namespace _Project.UI.Controls
         }
         public PlayerSlotsViewControl()
         {
+            dataSource = this;
             var tree = Resources.Load<VisualTreeAsset>(Constants.PlayerInventoryControl);
             tree.CloneTree(this);
-            dataSource = this;
         }
 
         private void OnPropertyChanged([CallerMemberName] string  propertyName = "")
         {
-            propertyChanged.Invoke(this, new(propertyName));
+            propertyChanged?.Invoke(this, new(propertyName));
         }
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
     }

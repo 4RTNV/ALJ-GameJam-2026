@@ -15,6 +15,6 @@ namespace _Project.Services
 
 
         public const string PlayerUIPrefabPath = "Prefabs/UI/PlayerUI";
-        public const string PlayerInventoryControl = "Prefabs/UI/PlayerInventoryView";
+        public const string PlayerInventoryControl = "UI/UI Layouts/PlayerInventoryView";
     }
 }

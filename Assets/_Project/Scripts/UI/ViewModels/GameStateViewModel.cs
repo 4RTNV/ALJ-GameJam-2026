@@ -11,7 +11,7 @@ namespace _Project.UI.ViewModels
     {
         private readonly IGameTimer _timer;
 
-
+        [CreateProperty]
         public PlayerInventoryViewModel InventoryVM { get; }
 
         [CreateProperty]

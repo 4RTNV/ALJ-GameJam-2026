@@ -8,7 +8,7 @@ namespace _Project.UI.ViewModels
 {
     public class PlayerInventoryViewModel : INotifyBindablePropertyChanged
     {
-        private int mass;
+        private int _mass;
 
         [CreateProperty]
         public Color LegsTint { get; set; }
@@ -25,10 +25,10 @@ namespace _Project.UI.ViewModels
         [CreateProperty]
         public int Mass
         {
-            get => mass;
+            get => _mass;
             private set
             {
-                mass = value;
+                _mass = value;
                 OnPropertyChanged();
             }
         }

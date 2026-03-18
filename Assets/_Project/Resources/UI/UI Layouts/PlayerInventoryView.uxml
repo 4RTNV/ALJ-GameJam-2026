@@ -1,10 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1; justify-content: space-around; position: relative; align-self: stretch; align-content: stretch; align-items: stretch; overflow: visible;">
-        <ui:Image name="Head" source="project://database/Assets/_Project/Resources/Images/humanhud/head.png?fileID=2800000&amp;guid=f72b4a6f414e78a4ca196bf329a58c2f&amp;type=3#head" style="top: 0; position: absolute; left: 0; right: 0; bottom: 0;">
-            <Bindings>
-                <ui:DataBinding property="tintColor" data-source-path="HeadTint" binding-mode="ToTarget"/>
-            </Bindings>
-        </ui:Image>
+        <ui:Image name="Head" source="project://database/Assets/_Project/Resources/Images/humanhud/head.png?fileID=2800000&amp;guid=f72b4a6f414e78a4ca196bf329a58c2f&amp;type=3#head" style="top: 0; position: absolute; left: 0; right: 0; bottom: 0;"/>
         <ui:Image name="LeftArm" source="project://database/Assets/_Project/Resources/Images/humanhud/hand_left.png?fileID=2800000&amp;guid=6d34d0248bca9d04f9a6fe7fe722bcc0&amp;type=3#hand_left" style="position: absolute; left: 0; right: 0; bottom: 0; top: 0;">
             <Bindings>
                 <ui:DataBinding property="tintColor" data-source-path="LeftArmTint" binding-mode="ToTarget"/>

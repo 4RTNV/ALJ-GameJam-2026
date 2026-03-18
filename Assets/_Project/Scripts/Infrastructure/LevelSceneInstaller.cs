@@ -10,6 +10,7 @@ namespace _Project.Infrastructure
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             containerBuilder.AddTransient(typeof(GameStateViewModel));
+            containerBuilder.AddTransient(typeof(PlayerInventoryViewModel));
 
             containerBuilder.OnContainerBuilt += ContainerBuilt;
         }
