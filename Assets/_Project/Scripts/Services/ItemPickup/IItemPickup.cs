@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace _Project.Services.ItemPickup
+﻿namespace _Project.Services.ItemPickup
 {
     public interface IItemPickup
     {
-        void TryPickUpItem(Vector3 playerPosition);
+        bool TryPickUpItem(Treasure treasure);
     }
 }

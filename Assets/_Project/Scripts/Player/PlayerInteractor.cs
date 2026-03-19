@@ -12,28 +12,28 @@ namespace _Project.Player
         [SerializeField]
         private float interactionRange;
 
-        private void Start()
+        private void Awake()
         {
             _camera = Camera.main; // to be injected?
-            _playerActions = new InputActionsAsset.PlayerActions();
+            _playerActions = new InputActionsAsset().Player;
             _playerActions.Enable();
-            _playerActions.Interact.performed += OnPlayerInteracted;
+            _playerActions.Attack.performed += OnPlayerInteracted;
 
         }
 
         private void OnPlayerInteracted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            if (_interactable == null)
-                return;
-            _interactable.Interact();
+            _interactable?.Interact();
         }
 
         private void Update()
         {
-            var cursorPostion = _playerActions.CursorPosition.ReadValue<Vector2>();
-            Physics.Raycast(_camera.ScreenPointToRay(cursorPostion),
+            var cursorPosition = _playerActions.CursorPosition.ReadValue<Vector2>();
+            Physics.Raycast(_camera.ScreenPointToRay(cursorPosition),
                 out RaycastHit hitInfo);
             if (!IsInRange(hitInfo.point, transform.position))
+                return;
+            if (hitInfo.collider == null || hitInfo.collider.gameObject == null)
                 return;
             if (!hitInfo.collider.gameObject.TryGetComponent(out _interactable))
                 return;
@@ -47,7 +47,7 @@ namespace _Project.Player
 
         private void OnDestroy() 
             => _playerActions.Disable();
-
+            
         private bool IsInRange(Vector3 target, Vector3 playerPosition)
         {
             playerPosition.y = 0;

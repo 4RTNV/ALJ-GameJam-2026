@@ -14,9 +14,11 @@ namespace _Project.Services.ItemPickup
 
         public bool TryPickUpItem(Treasure treasure)
         {
-            //free slots check here, Or maybe move them down to TryAcceptNewTreasure
+            if (!_playerInventory.CanAccept(treasure))
+                return false;
+
             _playerInventory.AcceptNewTreasure(treasure);
-            Object.Destroy(treasure.gameObject); // should it not be on object
+            Object.Destroy(treasure.gameObject); 
             return true;
         }
     }
