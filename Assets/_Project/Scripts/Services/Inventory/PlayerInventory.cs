@@ -1,4 +1,5 @@
 ﻿using _Project.Services.ItemPickup;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -9,6 +10,9 @@ public class PlayerInventory : IPlayerInventory
     private readonly ILogger _logger;
     private readonly ObservableCollection<IWeightedItem> _inventoryItems;
 
+    public event EventHandler<IWeightedItem> ItemPickedUp;
+    public event EventHandler InventoryCleared;
+
     public PlayerInventory(ILogger logger)
     {
         _logger = logger;
@@ -17,8 +21,12 @@ public class PlayerInventory : IPlayerInventory
         _logger.Log("Player inventory loaded");
     }
 
-    public void AcceptNewTreasure(IWeightedItem weightedItem) 
-        => _inventoryItems.Add(weightedItem);
+    public void AcceptNewTreasure(IWeightedItem weightedItem)
+    {
+        _inventoryItems.Add(weightedItem);
+        ItemPickedUp?.Invoke(this, weightedItem);
+
+    }
 
     public int InventoryMass { get; private set; }
 
