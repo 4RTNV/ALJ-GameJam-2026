@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using _Project.Services.ItemPickup;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using UnityEngine;
@@ -29,4 +30,17 @@ public class PlayerInventory : IPlayerInventory
 
     private int ComputeInventoryMass() 
         => _inventoryItems.Sum(x => x.Mass);
+
+    public bool CanAccept(Treasure treasure)
+    {
+        return treasure.Slot switch
+        {
+            InventorySlotType.Pocket => true,
+            InventorySlotType.Back => _inventoryItems.Any(x => x.Slot == InventorySlotType.Back),
+            InventorySlotType.Hand => _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 1,
+            InventorySlotType.Drag => _inventoryItems.Any(x => x.Slot == InventorySlotType.Drag)
+            && _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 0,
+            _ => false,
+        };
+    }
 }

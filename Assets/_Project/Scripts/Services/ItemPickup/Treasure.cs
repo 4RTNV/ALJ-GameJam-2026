@@ -1,4 +1,5 @@
 ﻿using _Project.Interactables;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace _Project.Services.ItemPickup
@@ -8,14 +9,24 @@ namespace _Project.Services.ItemPickup
         [SerializeField] private int _mass = 1;
         [SerializeField] private InventorySlotType _slot = InventorySlotType.Pocket;
 
+        private IItemPickup _itemPickup;
+
         public int Mass => _mass;
         public InventorySlotType Slot => _slot;
 
-        public void Interact() => Try
+        [Inject]
+        private void Construct(IItemPickup picker)
+        {
+            _itemPickup = picker;
+        }
+        public void Interact()
+        {
+            _itemPickup.TryPickUpItem(this);
+        }
 
         public void SelectForInteraction()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 }

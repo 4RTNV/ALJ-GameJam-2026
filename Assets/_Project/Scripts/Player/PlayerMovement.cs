@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private InputActionsAsset.PlayerActions _playerInputActions;
     private Rigidbody _rigidBody;
 
-    private void Start()
+    private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
         _playerInputActions = new InputActionsAsset().Player;
@@ -23,4 +23,5 @@ public class PlayerMovement : MonoBehaviour
                                                 _rigidBody.linearVelocity.y,
                                                 movementDirection.y * PlayerMoveMaxSpeed);
     }
+    private void OnDestroy() => _playerInputActions.Disable();
 }
