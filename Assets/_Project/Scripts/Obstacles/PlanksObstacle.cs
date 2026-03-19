@@ -9,7 +9,7 @@ namespace _Project.Obstacles
 
         void Start()
         {
-
+            _collider = GetComponent<MeshCollider>();
             _trigger = GetComponent<BoxCollider>();
         }
 
@@ -19,6 +19,7 @@ namespace _Project.Obstacles
             {
                 _collider.enabled = false;
                 _trigger.enabled = false;
+                //replace models, etc etc...
             }
         }
 
