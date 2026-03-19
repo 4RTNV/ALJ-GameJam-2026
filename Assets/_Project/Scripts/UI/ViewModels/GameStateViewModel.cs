@@ -28,6 +28,13 @@ namespace _Project.UI.ViewModels
             _timer = timer;
             InventoryVM = inventoryVM;
             SingletonCoroutineRunner.OnGameLoopUpdate += Update;
+            inventoryVM.propertyChanged += InventoryVMPropertyChanged;
+        }
+
+        private void InventoryVMPropertyChanged(object sender, BindablePropertyChangedEventArgs e)
+        {
+            //no words can describe how much i hate what i built
+            propertyChanged.Invoke(this, new($"{nameof(InventoryVM)}.{e.propertyName}")); 
         }
 
         private void Update(object sender, EventArgs e)

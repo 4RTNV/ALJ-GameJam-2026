@@ -13,8 +13,9 @@ namespace _Project.UI.ViewModels
         private Color torsoTint;
         private Color leftArmTint;
         private Color rightArmTint;
-        private readonly Color _occupiedColor = Color.aliceBlue;
-        private readonly Color _freeColor = Color.aliceBlue;
+        private readonly Color _occupiedColor = Color.purple;
+        private readonly Color _freeColor = Color.pink;
+        private readonly IPlayerInventory _playerInventory;
 
         [CreateProperty]
         public Color LegsTint
@@ -69,16 +70,24 @@ namespace _Project.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string Value
+        {
+            get => $"${_playerInventory.InventoryValue}";
+        }
 
         public PlayerInventoryViewModel(IPlayerInventory playerInventory)
         {
             playerInventory.ItemPickedUp += OnItemPickedUp;
             playerInventory.InventoryCleared += OnInventoryCleared;
+            _playerInventory = playerInventory;
             OnInventoryCleared(this, null);
         }
 
         private void OnInventoryCleared(object sender, EventArgs e)
         {
+            Mass = _playerInventory.InventoryMass;
+            OnPropertyChanged(nameof(Value));
+
             TorsoTint = _freeColor;
             LeftArmTint = _freeColor;
             RightArmTint = _freeColor;
@@ -87,7 +96,15 @@ namespace _Project.UI.ViewModels
 
         private void OnItemPickedUp(object sender, IWeightedItem e)
         {
-            switch (e.Slot) //this is horrible and I hate myself... But not enough to make a proper VM w/ converters
+            Mass = _playerInventory.InventoryMass;
+            OnPropertyChanged(nameof(Value));
+
+            RecolorElement(e);
+        }
+
+        private void RecolorElement(IWeightedItem pickedUpItem)
+        {
+            switch (pickedUpItem.Slot) //this is horrible and I hate myself... But not enough to make a proper VM w/ converters
             {
                 case InventorySlotType.Back:
                     TorsoTint = _occupiedColor;
@@ -99,7 +116,7 @@ namespace _Project.UI.ViewModels
                         LeftArmTint = _occupiedColor;
                     break;
                 case InventorySlotType.Pocket:
-                    //Lerp once I we get clear on pockets limit
+                    //Lerp once we get clear on pockets limit
                     break;
                 case InventorySlotType.Drag:
                     LeftArmTint = _occupiedColor;

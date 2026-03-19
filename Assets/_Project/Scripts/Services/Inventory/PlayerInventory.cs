@@ -30,6 +30,8 @@ public class PlayerInventory : IPlayerInventory
 
     public int InventoryMass { get; private set; }
 
+    public int InventoryValue => UnityEngine.Random.Range(10, 1000); //TBF
+
     private void OnInventoryUpdated(object sender, NotifyCollectionChangedEventArgs e)
     {
         InventoryMass = ComputeInventoryMass();
@@ -44,9 +46,9 @@ public class PlayerInventory : IPlayerInventory
         return treasure.Slot switch
         {
             InventorySlotType.Pocket => true,
-            InventorySlotType.Back => _inventoryItems.Any(x => x.Slot == InventorySlotType.Back),
+            InventorySlotType.Back => !_inventoryItems.Any(x => x.Slot == InventorySlotType.Back),
             InventorySlotType.Hand => _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 1,
-            InventorySlotType.Drag => _inventoryItems.Any(x => x.Slot == InventorySlotType.Drag)
+            InventorySlotType.Drag => !_inventoryItems.Any(x => x.Slot == InventorySlotType.Drag)
             && _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 0,
             _ => false,
         };
