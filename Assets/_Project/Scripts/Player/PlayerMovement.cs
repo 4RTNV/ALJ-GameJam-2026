@@ -23,4 +23,8 @@ public class PlayerMovement : MonoBehaviour
                                                 _rigidBody.linearVelocity.y,
                                                 movementDirection.y * PlayerMoveMaxSpeed);
     }
+    private void OnDestroy()
+    {
+        _playerInputActions.Disable();
+    }
 }
