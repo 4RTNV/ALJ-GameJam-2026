@@ -12,31 +12,14 @@ namespace _Project.Services.ItemPickup
             _playerInventory = playerInventory;
         }
 
-        public void TryPickUpItem(Vector3 playerPosition)
+        public bool TryPickUpItem(Treasure treasure)
         {
-            Treasure[] treasures = Object.FindObjectsByType<Treasure>(FindObjectsSortMode.None);
-            foreach (var treasure in treasures)
-            {
-                if (!IsInRange(treasure.transform, playerPosition)) 
-                    continue;
-                
-                PickUpNearestTreasure(treasure);
-                return;
-            }
-        }
+            if (!_playerInventory.CanAccept(treasure))
+                return false;
 
-        private void PickUpNearestTreasure(Treasure treasure)
-        {
             _playerInventory.AcceptNewTreasure(treasure);
-            Object.Destroy(treasure.gameObject);
-        }
-
-        private bool IsInRange(Transform target, Vector3 playerPosition)
-        {
-            Vector3 targetPos = target.position;
-            playerPosition.y = 0;
-            targetPos.y = 0;
-            return Vector3.Distance(playerPosition, targetPos) <= PickupRange;
+            Object.Destroy(treasure.gameObject); 
+            return true;
         }
     }
 }

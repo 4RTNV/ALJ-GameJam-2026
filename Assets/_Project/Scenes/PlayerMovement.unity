@@ -649,9 +649,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 788788022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ecfed19636143b088c235f4110cbf0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 071ae4c93b779274d9e745609771ffe7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Player.PlayerInteractor
+  interactionRange: 100
 --- !u!1 &1206100314
 GameObject:
   m_ObjectHideFlags: 0
