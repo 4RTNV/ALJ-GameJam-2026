@@ -39,10 +39,14 @@ namespace _Project.Player
             if (!hitInfo.collider.gameObject.TryGetComponent(out ITooltipHolder selectable))
             {
                 _selectable?.OnMouseLeave();
+                _selectable = null;
                 return;
             }
-            if(selectable != _selectable)
+            if(_selectable == null || selectable != _selectable)
+            {
+                _selectable = selectable;
                 _selectable.OnMouseHover();
+            }
         }
 
         public void Construct()

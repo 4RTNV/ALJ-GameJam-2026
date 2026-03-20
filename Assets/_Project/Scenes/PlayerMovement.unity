@@ -531,6 +531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Services.ItemPickup.Treasure
   _mass: 2
   _slot: 1
+  _itemValue: 10
+  _name: Generic Red Thing
 --- !u!1 &725564743
 GameObject:
   m_ObjectHideFlags: 0

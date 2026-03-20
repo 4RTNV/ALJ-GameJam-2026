@@ -73,9 +73,6 @@ namespace _Project.UI.Controls
         }
         public PlayerSlotsViewControl()
         {
-            dataSource = this;
-            var tree = Resources.Load<VisualTreeAsset>(Constants.PlayerInventoryControl);
-            tree.CloneTree(this);
         }
 
         private void OnPropertyChanged([CallerMemberName] string  propertyName = "")

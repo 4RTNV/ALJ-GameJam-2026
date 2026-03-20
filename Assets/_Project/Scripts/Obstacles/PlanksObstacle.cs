@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 namespace _Project.Obstacles
 {
@@ -27,7 +26,5 @@ namespace _Project.Obstacles
         {
             return weightedObject.Mass <= _weightThreshold;
         }
-
-        public event EventHandler OnWeightThresholdReached;
     }
 }
