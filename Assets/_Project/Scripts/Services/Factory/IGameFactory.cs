@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Project.Services.PlayerProgress;
 using _Project.UI.ViewModels;
+using UnityEngine.UIElements;
 
 namespace _Project.Services.Factory
 {
@@ -8,6 +9,7 @@ namespace _Project.Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; } 
         List<IProgressUpdater> ProgressWriters { get; }
-        void CreatePlayerUI(GameStateViewModel gameVM);
+        UIDocument CreatePlayerUI(GameStateViewModel gameVM);
+        UIDocument CreateTooltipUI(TooltipViewModel tooltipVM);
     }
 }

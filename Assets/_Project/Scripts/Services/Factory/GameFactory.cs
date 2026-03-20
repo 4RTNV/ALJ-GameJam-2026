@@ -4,6 +4,7 @@ using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
 using UnityEngine.UIElements;
 using _Project.UI.ViewModels;
+using UnityEditor.UIElements;
 
 namespace _Project.Services.Factory
 {
@@ -19,11 +20,18 @@ namespace _Project.Services.Factory
         };
 
 
-        public void CreatePlayerUI(GameStateViewModel gameVM)
+        public UIDocument CreatePlayerUI(GameStateViewModel gameVM)
         {
-            
-            var ui = _assets.Instantiate<UIDocument>(Constants.PlayerUIPrefabPath).rootVisualElement;
-            ui.dataSource = gameVM;
+            var ui = _assets.Instantiate<UIDocument>(Constants.PlayerUIPrefabPath);
+            ui.rootVisualElement.dataSource = gameVM;
+            return ui;
+        }
+
+        public UIDocument CreateTooltipUI(TooltipViewModel tooltipVM)
+        {
+            var ui = _assets.Instantiate<UIDocument>(Constants.TooltipUIPrefabPath);
+            ui.rootVisualElement.dataSource = tooltipVM;
+            return ui;
         }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress)

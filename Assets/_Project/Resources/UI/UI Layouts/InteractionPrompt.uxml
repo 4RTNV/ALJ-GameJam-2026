@@ -1,9 +1,21 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; align-self: flex-start; justify-content: flex-start; flex-direction: row; align-items: flex-start;">
-        <ui:Image source="project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=9469db6be52f83944a32e7a5d1e612d4&amp;type=3#check@2x" style="align-self: flex-start; align-content: auto;"/>
-        <ui:VisualElement style="flex-grow: 1; align-self: flex-start; justify-content: flex-start; align-items: flex-start;">
-            <ui:Label text="ToolTip" name="Tooltip"/>
-            <ui:Label text="Main Label" name="MainLabel"/>
-        </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; align-self: flex-start; justify-content: flex-start; align-items: flex-start; flex-shrink: 1;">
+        <ui:Label text="Main Label" name="MainLabel" style="-unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); background-color: rgb(163, 175, 176); font-size: 20px; margin-top: 2px; padding-top: 2px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Label text="ToolTip" name="Tooltip" style="flex-shrink: 10; left: 15px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); background-color: rgb(163, 175, 176); font-size: 16px; margin-top: 2px; padding-top: 2px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="Tooltip" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.visibility" data-source-path="Tooltip" binding-mode="ToTarget" source-to-ui-converters="StringToVisibility"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Label text="SecondaryTooltip" name="SecondaryTooltip" style="align-self: auto; justify-content: flex-start; flex-shrink: 20; left: 30px; background-color: rgb(163, 175, 176); -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); -unity-text-outline-width: 0; -unity-text-outline-color: rgb(255, 255, 255); margin-top: 2px; padding-top: 2px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="SecondaryTooltip" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.visibility" data-source-path="SecondaryTooltip" binding-mode="ToTarget" source-to-ui-converters="StringToVisibility"/>
+            </Bindings>
+        </ui:Label>
     </ui:VisualElement>
 </ui:UXML>

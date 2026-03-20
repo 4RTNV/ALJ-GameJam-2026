@@ -9,6 +9,7 @@ namespace _Project.UI.ViewModels
     public class PlayerInventoryViewModel : INotifyBindablePropertyChanged
     {
         private int _mass;
+        private int _value;
         private Color legsTint;
         private Color torsoTint;
         private Color leftArmTint;
@@ -72,7 +73,7 @@ namespace _Project.UI.ViewModels
         }
         public string Value
         {
-            get => $"${_playerInventory.InventoryValue}";
+            get => $"${_value}";
         }
 
         public PlayerInventoryViewModel(IPlayerInventory playerInventory)
@@ -86,6 +87,7 @@ namespace _Project.UI.ViewModels
         private void OnInventoryCleared(object sender, EventArgs e)
         {
             Mass = _playerInventory.InventoryMass;
+            _value = _playerInventory.InventoryValue;
             OnPropertyChanged(nameof(Value));
 
             TorsoTint = _freeColor;
@@ -97,6 +99,7 @@ namespace _Project.UI.ViewModels
         private void OnItemPickedUp(object sender, IWeightedItem e)
         {
             Mass = _playerInventory.InventoryMass;
+            _value = _playerInventory.InventoryValue;
             OnPropertyChanged(nameof(Value));
 
             RecolorElement(e);

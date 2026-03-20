@@ -29,7 +29,7 @@ public class PlayerInventory : IPlayerInventory
 
     public int InventoryMass { get; private set; }
 
-    public int InventoryValue => _inventoryItems.Sum(x => x.Value);
+    public int InventoryValue => _inventoryItems?.Sum(x => x.Value) ?? 0;
 
     private void OnInventoryUpdated(object sender, NotifyCollectionChangedEventArgs e)
     {

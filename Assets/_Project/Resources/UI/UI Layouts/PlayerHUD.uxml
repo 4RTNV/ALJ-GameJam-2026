@@ -9,7 +9,7 @@
         </ui:Label>
     </ui:VisualElement>
     <ui:VisualElement name="PlayerStatus" style="flex-grow: 1; align-items: flex-start; align-content: flex-end; align-self: flex-start; justify-content: flex-end;">
-        <ui:Label text="4000 $" name="MoneyOnHands" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: flex-start; align-items: auto; position: relative; bottom: auto; top: auto; justify-content: flex-start; align-content: flex-end; -unity-text-align: middle-left; white-space: nowrap; text-overflow: ellipsis;">
+        <ui:Label text="$4000" name="MoneyOnHands" enabled="true" style="font-size: 26px; -unity-font-definition: resource(&quot;Fonts/USSR STENCIL&quot;); color: rgb(255, 255, 255); -unity-text-outline-width: 1px; align-self: flex-start; align-items: auto; position: relative; bottom: auto; top: auto; justify-content: flex-start; align-content: flex-end; -unity-text-align: middle-left; white-space: nowrap; text-overflow: ellipsis;">
             <Bindings>
                 <ui:DataBinding property="text" data-source-path="InventoryVM.Value" binding-mode="ToTarget"/>
             </Bindings>
@@ -20,11 +20,7 @@
             </Bindings>
         </ui:Label>
         <ui:VisualElement style="flex-grow: 1; justify-content: center; position: relative; align-self: stretch; align-content: stretch; align-items: stretch; overflow: visible; flex-direction: row-reverse; min-width: 150px; min-height: 150px; aspect-ratio: 1; max-width: 15%; max-height: 15%;">
-            <ui:Image name="Head" source="project://database/Assets/_Project/Resources/Images/humanhud/head.png?fileID=2800000&amp;guid=f72b4a6f414e78a4ca196bf329a58c2f&amp;type=3#head" style="top: 0; position: absolute; left: 0; right: 0; bottom: 0;">
-                <Bindings>
-                    <ui:DataBinding property="tintColor" data-source-path="HeadTint" binding-mode="ToTarget" data-source-type="_Project.UI.Controls.PlayerSlotsViewControl, Assembly-CSharp"/>
-                </Bindings>
-            </ui:Image>
+            <ui:Image name="Head" source="project://database/Assets/_Project/Resources/Images/humanhud/head.png?fileID=2800000&amp;guid=f72b4a6f414e78a4ca196bf329a58c2f&amp;type=3#head" style="top: 0; position: absolute; left: 0; right: 0; bottom: 0;"/>
             <ui:Image name="LeftArm" source="project://database/Assets/_Project/Resources/Images/humanhud/hand_left.png?fileID=2800000&amp;guid=6d34d0248bca9d04f9a6fe7fe722bcc0&amp;type=3#hand_left" style="position: absolute; left: 0; right: 0; bottom: 0; top: 0;">
                 <Bindings>
                     <ui:DataBinding property="tintColor" data-source-path="InventoryVM.LeftArmTint" binding-mode="ToTarget"/>

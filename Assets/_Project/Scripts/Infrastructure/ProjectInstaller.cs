@@ -1,19 +1,20 @@
-﻿using _Project.Infrastructure.InGameTime;
+﻿using _Project.Infrastructure.GameTime;
+using _Project.Infrastructure.InGameTime;
 using _Project.Infrastructure.SaveLoad;
+using _Project.Interactables;
 using _Project.Models;
-using _Project.Services.SceneLoader;
 using _Project.Services.AssetManagement;
-using _Project.Services.Factory;
-using _Project.Services.States;
 using _Project.Services.CurrentLevelProgress;
+using _Project.Services.Factory;
 using _Project.Services.PlayerProgress;
+using _Project.Services.SceneLoader;
+using _Project.Services.States;
 using _Project.StaticData;
 using _Project.UI.Services.Factory;
 using _Project.UI.Services.Windows;
 using _Project.UI.ViewModels;
 using Reflex.Core;
 using UnityEngine;
-using _Project.Infrastructure.GameTime;
 
 namespace _Project.Infrastructure
 {
@@ -41,6 +42,8 @@ namespace _Project.Infrastructure
             builder.AddScoped(typeof(InGameTimeService), typeof(IInGameTimeService));
             builder.AddScoped(typeof(WindowContainer), typeof(IWindowContainer));
             builder.AddScoped(typeof(GameTimer), typeof(IGameTimer));
+            builder.AddScoped(typeof(InteractablesSelector), typeof(IInteractablesSelector));
+
 
             builder.AddSingleton(typeof(UserModel)); // one shared instance
             builder.AddSingleton(typeof(UserMoneyViewModel)); // one shared VM
