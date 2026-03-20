@@ -7,7 +7,7 @@ namespace _Project.Player
     {
         private Camera _camera;
         private InputActionsAsset.PlayerActions _playerActions;
-        private ITooltipHolder _selectable;
+        private IInteractable _interactable;
 
         [SerializeField]
         private float interactionRange;
@@ -23,8 +23,7 @@ namespace _Project.Player
 
         private void OnPlayerInteracted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            if (_selectable != null && _selectable is IInteractable interactable)
-                interactable.Interact();
+            _interactable?.Interact();
         }
 
         private void Update()
@@ -36,13 +35,9 @@ namespace _Project.Player
                 return;
             if (hitInfo.collider == null || hitInfo.collider.gameObject == null)
                 return;
-            if (!hitInfo.collider.gameObject.TryGetComponent(out ITooltipHolder selectable))
-            {
-                _selectable?.OnMouseLeave();
+            if (!hitInfo.collider.gameObject.TryGetComponent(out _interactable))
                 return;
-            }
-            if(selectable != _selectable)
-                _selectable.OnMouseHover();
+            _interactable.SelectForInteraction();
         }
 
         public void Construct()
