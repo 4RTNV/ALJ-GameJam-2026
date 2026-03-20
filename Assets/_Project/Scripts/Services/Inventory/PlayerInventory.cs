@@ -1,4 +1,5 @@
 ﻿using _Project.Services.ItemPickup;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -9,6 +10,9 @@ public class PlayerInventory : IPlayerInventory
     private readonly ILogger _logger;
     private readonly ObservableCollection<IWeightedItem> _inventoryItems;
 
+    public event EventHandler<IWeightedItem> ItemPickedUp;
+    public event EventHandler InventoryCleared;
+
     public PlayerInventory(ILogger logger)
     {
         _logger = logger;
@@ -17,10 +21,16 @@ public class PlayerInventory : IPlayerInventory
         _logger.Log("Player inventory loaded");
     }
 
-    public void AcceptNewTreasure(IWeightedItem weightedItem) 
-        => _inventoryItems.Add(weightedItem);
+    public void AcceptNewTreasure(IWeightedItem weightedItem)
+    {
+        _inventoryItems.Add(weightedItem);
+        ItemPickedUp?.Invoke(this, weightedItem);
+
+    }
 
     public int InventoryMass { get; private set; }
+
+    public int InventoryValue => UnityEngine.Random.Range(10, 1000); //TBF
 
     private void OnInventoryUpdated(object sender, NotifyCollectionChangedEventArgs e)
     {
@@ -36,9 +46,9 @@ public class PlayerInventory : IPlayerInventory
         return treasure.Slot switch
         {
             InventorySlotType.Pocket => true,
-            InventorySlotType.Back => _inventoryItems.Any(x => x.Slot == InventorySlotType.Back),
+            InventorySlotType.Back => !_inventoryItems.Any(x => x.Slot == InventorySlotType.Back),
             InventorySlotType.Hand => _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 1,
-            InventorySlotType.Drag => _inventoryItems.Any(x => x.Slot == InventorySlotType.Drag)
+            InventorySlotType.Drag => !_inventoryItems.Any(x => x.Slot == InventorySlotType.Drag)
             && _inventoryItems.Where(x => x.Slot == InventorySlotType.Hand).Count() <= 0,
             _ => false,
         };

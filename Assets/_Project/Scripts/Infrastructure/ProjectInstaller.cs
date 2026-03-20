@@ -14,7 +14,6 @@ using _Project.UI.ViewModels;
 using Reflex.Core;
 using UnityEngine;
 using _Project.Infrastructure.GameTime;
-using _Project.MVVM;
 
 namespace _Project.Infrastructure
 {

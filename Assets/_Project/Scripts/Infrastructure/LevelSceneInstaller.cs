@@ -1,5 +1,6 @@
-﻿using _Project.MVVM;
+﻿using _Project.Infrastructure.GameTime;
 using _Project.Services.Factory;
+using _Project.UI.ViewModels;
 using Reflex.Core;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace _Project.Infrastructure
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             containerBuilder.AddTransient(typeof(GameStateViewModel));
+            containerBuilder.AddTransient(typeof(PlayerInventoryViewModel));
 
             containerBuilder.OnContainerBuilt += ContainerBuilt;
         }
@@ -18,7 +20,7 @@ namespace _Project.Infrastructure
         {
             var gameFactory = obj.Resolve<IGameFactory>();
             gameFactory.CreatePlayerUI(obj.Resolve<GameStateViewModel>());
-            
+            obj.Resolve<IGameTimer>().IsActive = true; //DONT MERGE ME TO MAIN
         }
     }
 }
