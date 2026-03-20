@@ -8,29 +8,28 @@ using UnityEngine;
 public class PlayerInventory : IPlayerInventory
 {
     private readonly ILogger _logger;
-    private readonly ObservableCollection<IWeightedItem> _inventoryItems;
+    private readonly ObservableCollection<Treasure> _inventoryItems;
 
-    public event EventHandler<IWeightedItem> ItemPickedUp;
+    public event EventHandler<Treasure> ItemPickedUp;
     public event EventHandler InventoryCleared;
 
     public PlayerInventory(ILogger logger)
     {
         _logger = logger;
-        _inventoryItems = new ObservableCollection<IWeightedItem>();
+        _inventoryItems = new ObservableCollection<Treasure>();
         _inventoryItems.CollectionChanged += OnInventoryUpdated;
         _logger.Log("Player inventory loaded");
     }
 
-    public void AcceptNewTreasure(IWeightedItem weightedItem)
+    public void AcceptNewTreasure(Treasure weightedItem)
     {
         _inventoryItems.Add(weightedItem);
         ItemPickedUp?.Invoke(this, weightedItem);
-
     }
 
     public int InventoryMass { get; private set; }
 
-    public int InventoryValue => UnityEngine.Random.Range(10, 1000); //TBF
+    public int InventoryValue => _inventoryItems.Sum(x => x.Value);
 
     private void OnInventoryUpdated(object sender, NotifyCollectionChangedEventArgs e)
     {

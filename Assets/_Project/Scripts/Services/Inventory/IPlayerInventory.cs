@@ -3,12 +3,12 @@ using System;
 
 public interface IPlayerInventory
 {
-    void AcceptNewTreasure(IWeightedItem weightedItem);
+    void AcceptNewTreasure(Treasure weightedItem);
     bool CanAccept(Treasure treasure);
     int InventoryMass { get; }
     int InventoryValue { get; }
 
-    event EventHandler<IWeightedItem> ItemPickedUp;
+    event EventHandler<Treasure> ItemPickedUp;
     event EventHandler InventoryCleared;
 
 }

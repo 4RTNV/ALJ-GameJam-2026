@@ -8,10 +8,12 @@ namespace _Project.Services.ItemPickup
     {
         [SerializeField] private int _mass = 1;
         [SerializeField] private InventorySlotType _slot = InventorySlotType.Pocket;
+        [SerializeField] private int _itemValue = 10;
 
         private IItemPickup _itemPickup;
 
         public int Mass => _mass;
+        public int Value => _itemValue;
         public InventorySlotType Slot => _slot;
 
         [Inject]

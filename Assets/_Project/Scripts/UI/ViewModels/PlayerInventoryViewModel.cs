@@ -13,8 +13,8 @@ namespace _Project.UI.ViewModels
         private Color torsoTint;
         private Color leftArmTint;
         private Color rightArmTint;
-        private readonly Color _occupiedColor = Color.purple;
-        private readonly Color _freeColor = Color.pink;
+        private readonly Color _occupiedColor = Color.lightBlue;
+        private readonly Color _freeColor = Color.white;
         private readonly IPlayerInventory _playerInventory;
 
         [CreateProperty]
