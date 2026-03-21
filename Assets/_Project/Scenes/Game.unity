@@ -23693,9 +23693,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74febaf315484b0987b329e19065ecdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.AnimatedObjects.Door
-  doorTransforms:
-  - {fileID: 4952435138072396}
-  - {fileID: 4594955437653964}
+  doorLeaves:
+  - transform: {fileID: 4952435138072396}
+    direction: 1
+  - transform: {fileID: 4594955437653964}
+    direction: -1
   openAngle: 100
   openDuration: 0.2
   openCurve:
