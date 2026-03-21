@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Construct(Camera camera)
     {
+        Debug.LogWarning("Use injection and CameraProvider for this");
         _camera = camera;
     }
 
