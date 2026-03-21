@@ -6,8 +6,8 @@ using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
 using UnityEngine.UIElements;
 using _Project.UI.ViewModels;
+using Reflex.Extensions;
 using Unity.Cinemachine;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace _Project.Services.Factory
@@ -54,13 +54,15 @@ namespace _Project.Services.Factory
             cinemachine.Follow = playerInstance.transform;
             Transform cameraBoundObject = GameObject.FindGameObjectWithTag("CameraBound").transform;
             confiner.BoundingVolume = cameraBoundObject.GetComponent<BoxCollider>();
-            
+
 
             Camera camera = cameraParent.GetComponentInChildren<Camera>();
             _cameraProvider.SetCamera(camera);
-            
+
             playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
             playerInstance.GetComponent<PlayerMovement>().Construct(camera);
+            IPlayerInventory playerInventory = playerInstance.scene.GetSceneContainer().Resolve<IPlayerInventory>();
+            playerInstance.GetComponent<PlayerHands>().Construct(playerInventory);
         }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress, ICameraProvider cameraProvider)
