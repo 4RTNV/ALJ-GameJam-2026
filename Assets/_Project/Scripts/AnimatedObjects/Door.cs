@@ -61,7 +61,7 @@ namespace _Project.AnimatedObjects
             {
                 elapsed += Time.deltaTime;
                 float t = animationCurve.Evaluate(elapsed / animationDuration);
-                _currentAngle = Mathf.Lerp(startAngle, targetAngle, t);
+                _currentAngle = Mathf.LerpUnclamped(startAngle, targetAngle, t);
                 doorTransform.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
                 yield return null;
             }
