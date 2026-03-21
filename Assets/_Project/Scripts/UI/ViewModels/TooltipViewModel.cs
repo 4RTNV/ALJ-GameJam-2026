@@ -2,7 +2,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Properties;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace _Project.UI.ViewModels
@@ -33,29 +32,18 @@ namespace _Project.UI.ViewModels
             }
         }
         [CreateProperty]
+        public TooltipModel Model
         {
             set
             {
-                OnPropertyChanged();
-            }
-
-        }
-        public TooltipModel Model
-        { 
-            set
-            {
-                if(value == null)
+                if (value == null)
                 {
                     return;
                 }
 
                 Name = value.Name;
                 Tooltip = value.Tooltip;
-        }
-
-        public void Hide()
-        {
-            //do something abt visibilit, idk yet
+            }
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -66,3 +54,4 @@ namespace _Project.UI.ViewModels
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
     }
 }
+
