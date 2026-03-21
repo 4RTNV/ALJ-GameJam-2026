@@ -42,16 +42,25 @@ namespace _Project.Services.Factory
         public GameObject CreatePlayer()
         {
             GameObject playerInstance = _assets.Instantiate(Constants.PlayerPrefabPath);
+            CreateCamera(playerInstance);
+            return playerInstance;
+        }
+
+        private void CreateCamera(GameObject playerInstance)
+        {
             GameObject cameraParent = _assets.Instantiate(Constants.CinemachinePrefabPath);
             CinemachineCamera cinemachine = cameraParent.GetComponentInChildren<CinemachineCamera>();
+            CinemachineConfiner3D confiner = cameraParent.GetComponentInChildren<CinemachineConfiner3D>();
             cinemachine.Follow = playerInstance.transform;
+            Transform cameraBoundObject = GameObject.FindGameObjectWithTag("CameraBound").transform;
+            confiner.BoundingVolume = cameraBoundObject.GetComponent<BoxCollider>();
+            
 
             Camera camera = cameraParent.GetComponentInChildren<Camera>();
             _cameraProvider.SetCamera(camera);
             
             playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
             playerInstance.GetComponent<PlayerMovement>().Construct(camera);
-            return playerInstance;
         }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress, ICameraProvider cameraProvider)
