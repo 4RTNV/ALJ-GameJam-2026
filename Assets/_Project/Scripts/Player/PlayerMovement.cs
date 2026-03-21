@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Move();
+        RotateTowardsCursor();
+    }
+
+    private void Move()
+    {
         var input = _playerInputActions.Move.ReadValue<Vector2>();
 
         Vector3 camForward = _camera.transform.forward;
@@ -38,6 +44,20 @@ public class PlayerMovement : MonoBehaviour
             moveDirection.x * PlayerMoveMaxSpeed,
             _rigidBody.linearVelocity.y,
             moveDirection.z * PlayerMoveMaxSpeed);
+    }
+
+    private void RotateTowardsCursor()
+    {
+        Vector2 cursorPosition = _playerInputActions.CursorPosition.ReadValue<Vector2>();
+        if (!Physics.Raycast(_camera.ScreenPointToRay(cursorPosition), out RaycastHit hit))
+            return;
+
+        Vector3 direction = hit.point - transform.position;
+        direction.y = 0f;
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     private void OnDestroy() => _playerInputActions.Disable();
