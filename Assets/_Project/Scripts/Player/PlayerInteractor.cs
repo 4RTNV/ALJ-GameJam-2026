@@ -48,7 +48,7 @@ namespace _Project.Player
             }
             if(_selectable == null || hoveredSelectable != _selectable)
             {
-                _selectable.OnMouseLeave();
+                _selectable?.OnMouseLeave();
                 _selectable = hoveredSelectable;
                 _selectable.OnMouseHover();
             }
