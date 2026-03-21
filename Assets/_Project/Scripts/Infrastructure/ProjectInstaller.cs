@@ -34,6 +34,7 @@ namespace _Project.Infrastructure
             builder.AddSingleton(typeof(PlayerPrefsSaveLoad), typeof(ISaveLoad));
             builder.AddSingleton(typeof(ScriptableStaticData), typeof(IStaticData));
             builder.AddSingleton(typeof(AsyncSceneLoader), typeof(ISceneLoader));
+            builder.AddSingleton(typeof(CameraProvider), typeof(ICameraProvider));
 
             builder.AddScoped(typeof(GameFactory), typeof(IGameFactory), typeof(ISavedProgressReader),
                 typeof(IProgressUpdater));

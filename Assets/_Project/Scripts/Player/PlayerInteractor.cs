@@ -21,6 +21,7 @@ namespace _Project.Player
 
         public void Construct(Camera camera)
         {
+            Debug.LogWarning("Use injection and CameraProvider for this");
             _camera = camera;
         }
 

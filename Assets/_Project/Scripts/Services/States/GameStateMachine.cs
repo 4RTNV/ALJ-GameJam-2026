@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Infrastructure.GameTime;
 using _Project.Infrastructure.InGameTime;
 using _Project.Infrastructure.SaveLoad;
 using _Project.MVVM;
@@ -23,7 +24,7 @@ namespace _Project.Services.States
         public GameStateMachine(IPersistentProgress persistentProgress, ISaveLoad saveLoad, IGameFactory gameFactory,
             IUIFactory uiFactory, IWindowContainer windowContainer, IAssetProvider assetProvider,
             IStaticData staticData, ILevelProgress levelProgress, IInGameTimeService timeService,
-            IEnumerable<ISavedProgressReader> saveReaderServices, ISceneLoader sceneLoader)
+            IEnumerable<ISavedProgressReader> saveReaderServices, ISceneLoader sceneLoader, IGameTimer gameTimer)
         {
             _states = new Dictionary<Type, IExitableState>
             {
@@ -32,7 +33,7 @@ namespace _Project.Services.States
                 [typeof(LoadHubState)] = new LoadHubState(this, windowContainer, sceneLoader),
                 [typeof(HubState)] = new HubState(this, saveReaderServices, windowContainer),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, gameFactory, persistentProgress, staticData, uiFactory, levelProgress),
-                [typeof(LoopLevelState)] = new LoopLevelState(this, saveLoad, levelProgress),
+                [typeof(LoopLevelState)] = new LoopLevelState(this),
                 [typeof(FinishedLevelState)] = new FinishedLevelState(this, persistentProgress, persistentProgress, timeService)
             };
         }
