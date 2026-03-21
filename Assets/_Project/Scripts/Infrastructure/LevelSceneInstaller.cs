@@ -2,8 +2,10 @@
 using _Project.Services.Factory;
 using _Project.UI.ViewModels;
 using _Project.Interactables;
+using _Project.Services.ItemPickup;
 using Reflex.Core;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace _Project.Infrastructure
 {
@@ -14,16 +16,16 @@ namespace _Project.Infrastructure
             containerBuilder.AddTransient(typeof(GameStateViewModel));
             containerBuilder.AddTransient(typeof(PlayerInventoryViewModel));
             containerBuilder.AddTransient(typeof(TooltipViewModel));
-
+            containerBuilder.AddScoped(typeof(PlayerInventory), typeof(IPlayerInventory));
+            containerBuilder.AddScoped(typeof(ItemPickup), typeof(IItemPickup));
             containerBuilder.OnContainerBuilt += ContainerBuilt;
         }
 
-        private void ContainerBuilt(Container obj)
+        private void ContainerBuilt(Container container)
         {
-            var gameFactory = obj.Resolve<IGameFactory>();
-            var ui = gameFactory.CreatePlayerUI(obj.Resolve<GameStateViewModel>());
-
-            obj.Resolve<IGameTimer>().IsActive = true; //DONT MERGE ME TO MAIN
+            var gameFactory = container.Resolve<IGameFactory>();
+            gameFactory.CreatePlayerUI(container.Resolve<GameStateViewModel>());
+            container.Resolve<IItemPickup>();
         }
     }
 }
