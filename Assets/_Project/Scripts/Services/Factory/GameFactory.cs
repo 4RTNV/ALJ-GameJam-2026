@@ -46,6 +46,7 @@ namespace _Project.Services.Factory
 
             Camera camera = cameraParent.GetComponentInChildren<Camera>();
             playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
+            playerInstance.GetComponent<PlayerMovement>().Construct(camera);
 
             return playerInstance;
         }
