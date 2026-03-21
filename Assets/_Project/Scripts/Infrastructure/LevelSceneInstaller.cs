@@ -25,6 +25,8 @@ namespace _Project.Infrastructure
         {
             var gameFactory = container.Resolve<IGameFactory>();
             gameFactory.CreatePlayerUI(container.Resolve<GameStateViewModel>());
+
+            container.Resolve<IGameTimer>().IsActive = true;
             container.Resolve<IItemPickup>();
         }
     }
