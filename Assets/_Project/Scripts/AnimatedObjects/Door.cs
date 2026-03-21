@@ -5,7 +5,7 @@ namespace _Project.AnimatedObjects
 {
     public class Door : MonoBehaviour
     {
-        [SerializeField] private Transform doorTransform;
+        [SerializeField] private Transform[] doorTransforms;
         [SerializeField] private float openAngle = 90f;
         [SerializeField] private float openDuration = 0.4f;
         [SerializeField] private AnimationCurve openCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
@@ -64,12 +64,14 @@ namespace _Project.AnimatedObjects
                 elapsed += Time.deltaTime;
                 float t = curve.Evaluate(elapsed / duration);
                 _currentAngle = Mathf.LerpUnclamped(startAngle, targetAngle, t);
-                doorTransform.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
+                foreach (Transform door in doorTransforms)
+                    door.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
                 yield return null;
             }
 
             _currentAngle = targetAngle;
-            doorTransform.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
+            foreach (Transform door in doorTransforms)
+                door.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
         }
     }
 }
