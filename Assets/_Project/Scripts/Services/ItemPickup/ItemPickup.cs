@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace _Project.Services.ItemPickup
+﻿namespace _Project.Services.ItemPickup
 {
     public class ItemPickup : IItemPickup
     {
@@ -17,7 +15,6 @@ namespace _Project.Services.ItemPickup
                 return false;
 
             _playerInventory.AcceptNewTreasure(treasure);
-            Object.Destroy(treasure.gameObject); 
             return true;
         }
     }
