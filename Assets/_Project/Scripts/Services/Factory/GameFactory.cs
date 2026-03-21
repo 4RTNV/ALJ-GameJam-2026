@@ -4,7 +4,9 @@ using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
 using UnityEngine.UIElements;
 using _Project.UI.ViewModels;
+using Unity.Cinemachine;
 using UnityEditor.UIElements;
+using UnityEngine;
 
 namespace _Project.Services.Factory
 {
@@ -32,6 +34,15 @@ namespace _Project.Services.Factory
             var ui = _assets.Instantiate<UIDocument>(Constants.TooltipUIPrefabPath);
             ui.rootVisualElement.dataSource = tooltipVM;
             return ui;
+        }
+
+        public GameObject CreatePlayer()
+        {
+            GameObject playerInstance = _assets.Instantiate(Constants.PlayerPrefabPath);
+            GameObject cameraParent = _assets.Instantiate(Constants.CinemachinePrefabPath);
+            CinemachineCamera cinemachine = cameraParent.GetComponentInChildren<CinemachineCamera>();
+            cinemachine.Follow = playerInstance.transform;
+            return playerInstance;
         }
 
         public GameFactory(IAssetProvider assets, IPersistentProgress progress)

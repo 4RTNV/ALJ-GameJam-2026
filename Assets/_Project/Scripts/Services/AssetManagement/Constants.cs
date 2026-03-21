@@ -16,5 +16,7 @@ namespace _Project.Services
 
         public const string PlayerUIPrefabPath = "Prefabs/UI/PlayerUI";
         public const string TooltipUIPrefabPath = "Prefabs/UI/TooltipUI";
+        public const string PlayerPrefabPath = "Prefabs/Player/Player";
+        public const string CinemachinePrefabPath = "Prefabs/Player/Camera";
     }
 }
