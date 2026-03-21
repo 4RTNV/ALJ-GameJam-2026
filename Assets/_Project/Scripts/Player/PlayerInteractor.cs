@@ -40,15 +40,16 @@ namespace _Project.Player
                 return;
             if (hitInfo.collider == null || hitInfo.collider.gameObject == null)
                 return;
-            if (!hitInfo.collider.gameObject.TryGetComponent(out ITooltipHolder selectable))
+            if (!hitInfo.collider.gameObject.TryGetComponent(out ITooltipHolder hoveredSelectable))
             {
                 _selectable?.OnMouseLeave();
                 _selectable = null;
                 return;
             }
-            if(_selectable == null || selectable != _selectable)
+            if(_selectable == null || hoveredSelectable != _selectable)
             {
-                _selectable = selectable;
+                _selectable.OnMouseLeave();
+                _selectable = hoveredSelectable;
                 _selectable.OnMouseHover();
             }
         }
