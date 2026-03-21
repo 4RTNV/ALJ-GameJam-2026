@@ -3,7 +3,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float PlayerMoveMaxSpeed;
+    private float playerMoveMaxSpeed;
+    [SerializeField]
+    private Animator animator;
+
+    private static readonly int IsMoving = Animator.StringToHash("is_running");
+    private static readonly int FloorLayerMask = 1 << 6;
 
     private InputActionsAsset.PlayerActions _playerInputActions;
     private Rigidbody _rigidBody;
@@ -23,14 +28,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        RotateTowardsCursor();
+        // Read input in Update so no frames are skipped
+        _cachedInput = _playerInputActions.Move.ReadValue<Vector2>();
+        _cachedCursorPosition = _playerInputActions.CursorPosition.ReadValue<Vector2>();
     }
+
+    private void FixedUpdate()
+    {
+        Move();
+        Rotate();
+    }
+
+    private Vector2 _cachedInput;
+    private Vector2 _cachedCursorPosition;
 
     private void Move()
     {
-        var input = _playerInputActions.Move.ReadValue<Vector2>();
-
         Vector3 camForward = _camera.transform.forward;
         Vector3 camRight = _camera.transform.right;
         camForward.y = 0f;
@@ -38,26 +51,47 @@ public class PlayerMovement : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        Vector3 moveDirection = camForward * input.y + camRight * input.x;
+        Vector3 moveDirection = camForward * _cachedInput.y + camRight * _cachedInput.x;
 
         _rigidBody.linearVelocity = new Vector3(
-            moveDirection.x * PlayerMoveMaxSpeed,
+            moveDirection.x * playerMoveMaxSpeed,
             _rigidBody.linearVelocity.y,
-            moveDirection.z * PlayerMoveMaxSpeed);
+            moveDirection.z * playerMoveMaxSpeed);
+
+        animator.SetBool(IsMoving, _cachedInput.sqrMagnitude > 0f);
     }
 
-    private void RotateTowardsCursor()
+    private void Rotate()
     {
-        Vector2 cursorPosition = _playerInputActions.CursorPosition.ReadValue<Vector2>();
-        if (!Physics.Raycast(_camera.ScreenPointToRay(cursorPosition), out RaycastHit hit))
-            return;
+        bool isMoving = _cachedInput.sqrMagnitude > 0f;
 
-        Vector3 direction = hit.point - transform.position;
-        direction.y = 0f;
+        Vector3 direction = isMoving ? GetMovementDirection() : GetCursorDirection();
         if (direction.sqrMagnitude < 0.001f)
             return;
 
-        transform.rotation = Quaternion.LookRotation(direction);
+        _rigidBody.MoveRotation(Quaternion.LookRotation(direction));
+    }
+
+    private Vector3 GetMovementDirection()
+    {
+        Vector3 camForward = _camera.transform.forward;
+        Vector3 camRight = _camera.transform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        Vector3 direction = camForward.normalized * _cachedInput.y + camRight.normalized * _cachedInput.x;
+        direction.y = 0f;
+        return direction;
+    }
+
+    private Vector3 GetCursorDirection()
+    {
+        if (!Physics.Raycast(_camera.ScreenPointToRay(_cachedCursorPosition), out RaycastHit hit, Mathf.Infinity, FloorLayerMask))
+            return Vector3.zero;
+
+        Vector3 direction = hit.point - _rigidBody.position;
+        direction.y = 0f;
+        return direction;
     }
 
     private void OnDestroy() => _playerInputActions.Disable();

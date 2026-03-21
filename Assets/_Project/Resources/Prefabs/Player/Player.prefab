@@ -2746,7 +2746,7 @@ Animator:
   m_GameObject: {fileID: 6531110439782412040}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8cd667791d7dfe04e8179992b4f37177, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66ec48543f9097c4d9106fbece5df35d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2770,7 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f8965d1e118a644b239047319d59bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  PlayerMoveMaxSpeed: 6
+  playerMoveMaxSpeed: 7
+  animator: {fileID: 7233008806755080091}
 --- !u!114 &6276585240862255154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2808,7 +2809,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &-1859571454874757087
