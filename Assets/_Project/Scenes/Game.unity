@@ -7358,7 +7358,7 @@ GameObject:
   - component: {fileID: 361699323}
   - component: {fileID: 361699324}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ExtractionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
