@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     private static readonly int IsMoving = Animator.StringToHash("is_running");
+    private static readonly int FloorLayerMask = 1 << 6;
 
     private InputActionsAsset.PlayerActions _playerInputActions;
     private Rigidbody _rigidBody;
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        RotateTowardsCursor();
+        Rotate();
     }
 
     private Vector2 _cachedInput;
@@ -60,17 +61,37 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(IsMoving, _cachedInput.sqrMagnitude > 0f);
     }
 
-    private void RotateTowardsCursor()
+    private void Rotate()
     {
-        if (!Physics.Raycast(_camera.ScreenPointToRay(_cachedCursorPosition), out RaycastHit hit))
-            return;
+        bool isMoving = _cachedInput.sqrMagnitude > 0f;
 
-        Vector3 direction = hit.point - _rigidBody.position;
-        direction.y = 0f;
+        Vector3 direction = isMoving ? GetMovementDirection() : GetCursorDirection();
         if (direction.sqrMagnitude < 0.001f)
             return;
 
         _rigidBody.MoveRotation(Quaternion.LookRotation(direction));
+    }
+
+    private Vector3 GetMovementDirection()
+    {
+        Vector3 camForward = _camera.transform.forward;
+        Vector3 camRight = _camera.transform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        Vector3 direction = camForward.normalized * _cachedInput.y + camRight.normalized * _cachedInput.x;
+        direction.y = 0f;
+        return direction;
+    }
+
+    private Vector3 GetCursorDirection()
+    {
+        if (!Physics.Raycast(_camera.ScreenPointToRay(_cachedCursorPosition), out RaycastHit hit, Mathf.Infinity, FloorLayerMask))
+            return Vector3.zero;
+
+        Vector3 direction = hit.point - _rigidBody.position;
+        direction.y = 0f;
+        return direction;
     }
 
     private void OnDestroy() => _playerInputActions.Disable();
