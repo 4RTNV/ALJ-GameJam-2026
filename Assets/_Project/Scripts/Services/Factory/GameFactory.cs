@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Data;
+using _Project.Player;
 using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
 using UnityEngine.UIElements;
@@ -42,6 +43,10 @@ namespace _Project.Services.Factory
             GameObject cameraParent = _assets.Instantiate(Constants.CinemachinePrefabPath);
             CinemachineCamera cinemachine = cameraParent.GetComponentInChildren<CinemachineCamera>();
             cinemachine.Follow = playerInstance.transform;
+
+            Camera camera = cameraParent.GetComponentInChildren<Camera>();
+            playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
+
             return playerInstance;
         }
 
