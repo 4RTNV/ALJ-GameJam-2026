@@ -5,7 +5,6 @@ namespace _Project.Services.ItemPickup
     public class ItemPickup : IItemPickup
     {
         private readonly IPlayerInventory _playerInventory;
-        private const float PickupRange = 3f;
 
         public ItemPickup(IPlayerInventory playerInventory)
         {

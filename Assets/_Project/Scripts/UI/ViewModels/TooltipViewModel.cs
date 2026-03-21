@@ -2,7 +2,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Properties;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace _Project.UI.ViewModels
@@ -12,7 +11,6 @@ namespace _Project.UI.ViewModels
         private string _name;
         private string _tooltip;
         private string _secondaryTooltip;
-        private Vector3 worldPosition;
 
         [CreateProperty]
         public string Name
@@ -35,16 +33,6 @@ namespace _Project.UI.ViewModels
             }
         }
         [CreateProperty]
-        public Vector3 WorldPosition
-        {
-            get => worldPosition;
-            set
-            {
-                worldPosition = value;
-                OnPropertyChanged();
-            }
-        }
-        [CreateProperty]
         public string SecondaryTooltip
         {
             get => _secondaryTooltip;
@@ -53,13 +41,14 @@ namespace _Project.UI.ViewModels
                 _secondaryTooltip = value;
                 OnPropertyChanged();
             }
-
         }
+
+        [CreateProperty]
         public TooltipModel Model
-        { 
+        {
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     return;
                 }
@@ -67,8 +56,7 @@ namespace _Project.UI.ViewModels
                 Name = value.Name;
                 Tooltip = value.Tooltip;
                 SecondaryTooltip = value.SecondaryTooltip;
-                WorldPosition = value.Position;
-            } 
+            }
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -79,3 +67,4 @@ namespace _Project.UI.ViewModels
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
     }
 }
+

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Services.ItemPickup
 {
-    public class Treasure : MonoBehaviour, IWeightedItem, IInteractable, ITooltipHolder
+    public class Treasure : MonoBehaviour, IWeightedItem, IInteractable
     {
         [SerializeField] private int _mass = 1;
         [SerializeField] private InventorySlotType _slot = InventorySlotType.Pocket;
@@ -16,7 +16,6 @@ namespace _Project.Services.ItemPickup
         private IItemPickup _itemPickup;
         private IInteractablesSelector _selector;
         private TooltipModel _model;
-        
 
         public int Mass => _mass;
         public int Value => _itemValue;
@@ -38,11 +37,6 @@ namespace _Project.Services.ItemPickup
         public void Interact()
         {
             _itemPickup.TryPickUpItem(this);
-        }
-
-        public void SelectForInteraction()
-        {
-            Debug.Log("Treasure was selected for interaction but the method implementation is missing");
         }
 
         public void OnMouseHover()

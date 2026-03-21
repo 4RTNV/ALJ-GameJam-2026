@@ -26,8 +26,8 @@ namespace _Project.Interactables
         {
             Debug.Log($"Requesting camera: {_cameraProvider.Camera}");
             _tooltipUI = _factory.CreateTooltipUI(_viewModel);
-            _tooltipUI.gameObject.transform.SetPositionAndRotation(interactable.Model.Position,
-                Quaternion.LookRotation(interactable.Model.Position - CurrentCameraPosition));
+            _tooltipUI.gameObject.transform.SetPositionAndRotation(interactable.Model.Position + _cameraProvider.Camera.transform.up * 0.5f,
+                Quaternion.LookRotation(Vector3.down, _cameraProvider.Camera.transform.up));
             _viewModel.Model = interactable.Model;
         }
 
