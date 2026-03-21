@@ -14,11 +14,14 @@ namespace _Project.Player
 
         private void Awake()
         {
-            _camera = Camera.main; // to be injected?
             _playerActions = new InputActionsAsset().Player;
             _playerActions.Enable();
             _playerActions.Attack.performed += OnPlayerInteracted;
+        }
 
+        public void Construct(Camera camera)
+        {
+            _camera = camera;
         }
 
         private void OnPlayerInteracted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -47,11 +50,6 @@ namespace _Project.Player
                 _selectable = selectable;
                 _selectable.OnMouseHover();
             }
-        }
-
-        public void Construct()
-        {
-
         }
 
         private void OnDestroy() 
