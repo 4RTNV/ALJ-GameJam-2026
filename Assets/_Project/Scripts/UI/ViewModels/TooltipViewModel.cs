@@ -11,8 +11,6 @@ namespace _Project.UI.ViewModels
     {
         private string _name;
         private string _tooltip;
-        private string _secondaryTooltip;
-        private Vector3 worldPosition;
 
         [CreateProperty]
         public string Name
@@ -35,22 +33,9 @@ namespace _Project.UI.ViewModels
             }
         }
         [CreateProperty]
-        public Vector3 WorldPosition
         {
-            get => worldPosition;
             set
             {
-                worldPosition = value;
-                OnPropertyChanged();
-            }
-        }
-        [CreateProperty]
-        public string SecondaryTooltip
-        {
-            get => _secondaryTooltip;
-            set
-            {
-                _secondaryTooltip = value;
                 OnPropertyChanged();
             }
 
@@ -66,9 +51,11 @@ namespace _Project.UI.ViewModels
 
                 Name = value.Name;
                 Tooltip = value.Tooltip;
-                SecondaryTooltip = value.SecondaryTooltip;
-                WorldPosition = value.Position;
-            } 
+        }
+
+        public void Hide()
+        {
+            //do something abt visibilit, idk yet
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")

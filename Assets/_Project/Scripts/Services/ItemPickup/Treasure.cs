@@ -40,7 +40,7 @@ namespace _Project.Services.ItemPickup
             _itemPickup.TryPickUpItem(this);
         }
 
-        public void SelectForInteraction()
+        public void OnMouseHover()
         {
             Debug.Log("Treasure was selected for interaction but the method implementation is missing");
         }
@@ -53,6 +53,11 @@ namespace _Project.Services.ItemPickup
         public void OnMouseLeave()
         {
             _selector.HideUI();
+        }
+
+        public void OnMouseLeave()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

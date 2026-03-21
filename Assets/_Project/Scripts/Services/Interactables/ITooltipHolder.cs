@@ -1,4 +1,6 @@
-﻿namespace _Project.Interactables
+﻿
+
+namespace _Project.Interactables
 {
     public interface ITooltipHolder
     {
