@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Data;
+using _Project.Infrastructure;
 using _Project.Player;
 using _Project.Services.AssetManagement;
 using _Project.Services.PlayerProgress;
@@ -15,6 +16,7 @@ namespace _Project.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IPersistentProgress _progress;
+        private readonly ICameraProvider _cameraProvider;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new();
         public List<IProgressUpdater> ProgressWriters { get; } = new()
@@ -45,16 +47,18 @@ namespace _Project.Services.Factory
             cinemachine.Follow = playerInstance.transform;
 
             Camera camera = cameraParent.GetComponentInChildren<Camera>();
+            _cameraProvider.SetCamera(camera);
+            
             playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
             playerInstance.GetComponent<PlayerMovement>().Construct(camera);
-
             return playerInstance;
         }
 
-        public GameFactory(IAssetProvider assets, IPersistentProgress progress)
+        public GameFactory(IAssetProvider assets, IPersistentProgress progress, ICameraProvider cameraProvider)
         {
             _assets = assets;
             _progress = progress;
+            _cameraProvider = cameraProvider;
         }
 
         public void LoadProgress(CurrentPlayerProgress progress)
