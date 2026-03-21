@@ -10,6 +10,7 @@ namespace _Project.UI.ViewModels
     {
         private string _name;
         private string _tooltip;
+        private string _secondaryTooltip;
 
         [CreateProperty]
         public string Name
@@ -32,6 +33,17 @@ namespace _Project.UI.ViewModels
             }
         }
         [CreateProperty]
+        public string SecondaryTooltip
+        {
+            get => _secondaryTooltip;
+            set
+            {
+                _secondaryTooltip = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [CreateProperty]
         public TooltipModel Model
         {
             set
@@ -43,6 +55,7 @@ namespace _Project.UI.ViewModels
 
                 Name = value.Name;
                 Tooltip = value.Tooltip;
+                SecondaryTooltip = value.SecondaryTooltip;
             }
         }
 

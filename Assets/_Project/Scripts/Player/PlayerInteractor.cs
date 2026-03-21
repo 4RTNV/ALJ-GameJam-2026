@@ -35,7 +35,7 @@ namespace _Project.Player
         {
             var cursorPosition = _playerActions.CursorPosition.ReadValue<Vector2>();
             Physics.Raycast(_camera.ScreenPointToRay(cursorPosition),
-                out RaycastHit hitInfo);
+                out RaycastHit hitInfo, float.MaxValue, ~0, QueryTriggerInteraction.Ignore);
             if (!IsInRange(hitInfo.point, transform.position))
                 return;
             if (hitInfo.collider == null || hitInfo.collider.gameObject == null)

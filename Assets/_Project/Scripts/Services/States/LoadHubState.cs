@@ -28,7 +28,7 @@ namespace _Project.Services.States
         public void Enter()
         {
             SingletonCoroutineRunner.Instance.StartCoroutine(
-                _sceneLoader.LoadScene(SceneNames.LevelSceneName, onLoaded: OnHubSceneLoaded));
+                _sceneLoader.LoadScene(SceneNames.PlayerMovementTestingScene, onLoaded: OnHubSceneLoaded));
         }
     }
 }
