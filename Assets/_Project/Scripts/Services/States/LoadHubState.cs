@@ -27,10 +27,8 @@ namespace _Project.Services.States
 
         public void Enter()
         {
-            //changed temporary.
-            //REJECT ME IF I AM IN A MERGE TO MAIN
             SingletonCoroutineRunner.Instance.StartCoroutine(
-                _sceneLoader.LoadScene(SceneNames.PlayerMovementTestingScene, onLoaded: OnHubSceneLoaded));
+                _sceneLoader.LoadScene(SceneNames.LevelSceneName, onLoaded: OnHubSceneLoaded));
         }
     }
 }

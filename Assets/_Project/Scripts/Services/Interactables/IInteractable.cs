@@ -1,8 +1,8 @@
-﻿
-namespace _Project.Interactables
+﻿namespace _Project.Interactables
 {
-    public interface IInteractable : ITooltipHolder
+    internal interface IInteractable
     {
         public void Interact();
+        public void SelectForInteraction();
     }
 }

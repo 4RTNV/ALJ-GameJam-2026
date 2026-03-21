@@ -30,6 +30,7 @@ namespace _Project.Services.States
 
         public void Enter()
         {
+            _gameFactory.CreatePlayer();
             _gameStateMachine.Enter<LoopLevelState>();
         }
 

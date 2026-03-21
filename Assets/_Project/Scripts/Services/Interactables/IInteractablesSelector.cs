@@ -1,6 +1,4 @@
-﻿using UnityEngine.UIElements;
-
-namespace _Project.Interactables
+﻿namespace _Project.Interactables
 {
     public interface IInteractablesSelector
     {
