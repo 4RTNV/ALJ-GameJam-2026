@@ -23480,8 +23480,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.AnimatedObjects.Door
   doorTransform: {fileID: 756576346}
   openAngle: 100
-  animationDuration: 0.3
-  animationCurve:
+  openDuration: 0.2
+  openCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.0115182
+      outSlope: 2.0115182
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.9990085
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 1.9960387
+      outSlope: 1.9960387
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.17130108
+    - serializedVersion: 3
+      time: 0.7
+      value: 1
+      inSlope: -3.484438
+      outSlope: -3.484438
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14349522
+      outWeight: 0.08043764
+    - serializedVersion: 3
+      time: 0.8
+      value: 1
+      inSlope: 2.0616467
+      outSlope: 2.0616467
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15590878
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  closeDuration: 0.15
+  closeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -23494,40 +23546,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.60533464
-      value: 0.996379
-      inSlope: -5.0841727
-      outSlope: -5.0841727
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.24376942
-    - serializedVersion: 3
-      time: 0.7048475
-      value: 1.0023936
-      inSlope: 9.524412
-      outSlope: 9.524412
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14345324
-    - serializedVersion: 3
-      time: 0.8309647
-      value: 0.9992112
-      inSlope: 5.590633
-      outSlope: 5.590633
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.11638904
-      outWeight: 0.2576206
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 3.8170242
-      outSlope: 3.8170242
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.21736763
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

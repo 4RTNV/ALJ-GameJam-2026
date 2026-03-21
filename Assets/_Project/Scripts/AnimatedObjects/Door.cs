@@ -7,8 +7,10 @@ namespace _Project.AnimatedObjects
     {
         [SerializeField] private Transform doorTransform;
         [SerializeField] private float openAngle = 90f;
-        [SerializeField] private float animationDuration = 0.4f;
-        [SerializeField] private AnimationCurve animationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        [SerializeField] private float openDuration = 0.4f;
+        [SerializeField] private AnimationCurve openCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        [SerializeField] private float closeDuration = 0.4f;
+        [SerializeField] private AnimationCurve closeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
         private Coroutine _animationCoroutine;
         private float _currentAngle;
@@ -34,33 +36,33 @@ namespace _Project.AnimatedObjects
         {
             if (_isOpen) return;
             _isOpen = true;
-            AnimateDoor(openAngle);
+            AnimateDoor(openAngle, openCurve, openDuration);
         }
 
         private void CloseDoor()
         {
             if (!_isOpen) return;
             _isOpen = false;
-            AnimateDoor(0f);
+            AnimateDoor(0f, closeCurve, closeDuration);
         }
 
-        private void AnimateDoor(float targetAngle)
+        private void AnimateDoor(float targetAngle, AnimationCurve curve, float duration)
         {
             if (_animationCoroutine != null)
                 StopCoroutine(_animationCoroutine);
 
-            _animationCoroutine = StartCoroutine(AnimateDoorRoutine(targetAngle));
+            _animationCoroutine = StartCoroutine(AnimateDoorRoutine(targetAngle, curve, duration));
         }
 
-        private IEnumerator AnimateDoorRoutine(float targetAngle)
+        private IEnumerator AnimateDoorRoutine(float targetAngle, AnimationCurve curve, float duration)
         {
             float startAngle = _currentAngle;
             float elapsed = 0f;
 
-            while (elapsed < animationDuration)
+            while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
-                float t = animationCurve.Evaluate(elapsed / animationDuration);
+                float t = curve.Evaluate(elapsed / duration);
                 _currentAngle = Mathf.LerpUnclamped(startAngle, targetAngle, t);
                 doorTransform.localRotation = Quaternion.Euler(0f, _currentAngle, 0f);
                 yield return null;

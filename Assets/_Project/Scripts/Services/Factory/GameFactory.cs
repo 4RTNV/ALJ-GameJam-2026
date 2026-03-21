@@ -47,7 +47,6 @@ namespace _Project.Services.Factory
             cinemachine.Follow = playerInstance.transform;
 
             Camera camera = cameraParent.GetComponentInChildren<Camera>();
-            Debug.Log($"Camera found: {camera.gameObject.name}");
             _cameraProvider.SetCamera(camera);
             
             playerInstance.GetComponent<PlayerInteractor>().Construct(camera);
