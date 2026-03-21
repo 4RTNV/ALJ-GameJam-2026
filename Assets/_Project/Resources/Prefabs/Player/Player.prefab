@@ -2770,7 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f8965d1e118a644b239047319d59bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  PlayerMoveMaxSpeed: 6
+  playerMoveMaxSpeed: 7
+  animator: {fileID: 7233008806755080091}
 --- !u!114 &6276585240862255154
 MonoBehaviour:
   m_ObjectHideFlags: 0

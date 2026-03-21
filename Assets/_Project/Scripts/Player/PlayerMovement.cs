@@ -3,7 +3,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float PlayerMoveMaxSpeed;
+    private float playerMoveMaxSpeed;
+    [SerializeField]
+    private Animator animator;
+
+    private static readonly int IsMoving = Animator.StringToHash("is_running");
 
     private InputActionsAsset.PlayerActions _playerInputActions;
     private Rigidbody _rigidBody;
@@ -49,9 +53,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = camForward * _cachedInput.y + camRight * _cachedInput.x;
 
         _rigidBody.linearVelocity = new Vector3(
-            moveDirection.x * PlayerMoveMaxSpeed,
+            moveDirection.x * playerMoveMaxSpeed,
             _rigidBody.linearVelocity.y,
-            moveDirection.z * PlayerMoveMaxSpeed);
+            moveDirection.z * playerMoveMaxSpeed);
+
+        animator.SetBool(IsMoving, _cachedInput.sqrMagnitude > 0f);
     }
 
     private void RotateTowardsCursor()
